@@ -19,5 +19,5 @@
 (after! format
  (set-formatter! 'clang-format
    '("clang-format"
-     "-style=\"{BasedOnStyle: WebKit, ContinuationIndentWidth: '8', IndentWidth: '8', UseTab: Never}\""
+     "-style={BasedOnStyle: WebKit, ContinuationIndentWidth: '8', IndentWidth: '8', UseTab: Never}"
    )))
