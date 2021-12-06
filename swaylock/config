@@ -1,0 +1,35 @@
+ignore-empty-password
+disable-caps-lock-text
+image=/home/stevegremory/Pictures/Wallpapers/night_city.png
+font=mononoki Nerd Font
+
+text-ver-color=ffffff
+text-wrong-color=ffffff
+text-clear-color=ffffff
+inside-color=00000000
+inside-ver-color=00000000
+inside-wrong-color=00000000
+inside-clear-color=00000000
+inside-caps-lock-color=00000000
+ring-color=ffffff
+ring-ver-color=ffffff
+ring-wrong-color=ffffff
+ring-clear-color=ffffff
+line-color=00000000
+line-clear-color=00000000
+line-ver-color=00000000
+key-hl-color=0b0b0b
+bs-hl-color=00000000
+caps-lock-bs-hl-color=00000000
+caps-lock-key-hl-color=00000000
+separator-color=00000000
+
+scaling=fill
+indicator
+clock
+timestr=%I:%M %p
+datestr=%d %B
+indicator-radius=450
+font-size=150
+text-color=fffff
+
