@@ -54,7 +54,7 @@
         	"format-icons": ["󱊡", "󱊢", "󱊣"]
 	},
 	"network": {
-        	"format-wifi": "  {essid}",
+        	"format-wifi": "",
         	"format-ethernet": "󰤮 Disconnected",
         	"format-linked": "{ifname} (No IP) ",
         	"format-disconnected": "󰤮 Disconnected",

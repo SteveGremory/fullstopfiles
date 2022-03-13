@@ -43,7 +43,7 @@ assign [app_id="audacity"] 6
 # Keybindings
 
 ## Touchpad settings
-input "1739:52545:SYNA7DB5:01_06CB:CD41_Touchpad" {
+input "1267:12735:ELAN0709:00_04F3:31BF_Touchpad" {
        dwt enabled
        tap enabled
        natural_scroll enabled
@@ -62,7 +62,7 @@ set $right l
 # Defaults
 
 ## terminal emulator
-set $term kitty
+set $term foot
 
 ## Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
@@ -71,7 +71,7 @@ set $menu wofi --show drun
 
 ## Output configuration
 # Default wallpaper 
-output * bg ~/Pictures/Wallpapers/night_city.png fill
+output * bg ~/Pictures/Wallpapers/new_mexico.jpg fill
 
 # Behavior
 focus_follows_mouse yes
@@ -80,10 +80,11 @@ focus_follows_mouse yes
 #
 # Example configuration:
 #
- exec swayidle -w \
-          timeout 600 'swaylock -f' \
-          # timeout 1200 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-          before-sleep 'swaylock -f'
+
+exec swayidle -w \
+    timeout 600 'swaylock -f' \
+    timeout 1200 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+    before-sleep 'swaylock -f'
 
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -110,8 +111,8 @@ bindsym $mod+p exec $menu
 bindsym Control+space exec makoctl dismiss
 
 # Screenshot with grim and swappy
-bindsym print exec /home/stevegremory/bin/screenshot.sh
-bindsym Shift+print exec /home/stevegremory/bin/screenshot -f
+bindsym print exec /home/steven/bin/screenshot.sh
+bindsym Shift+print exec /home/steven/bin/screenshot -f
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
     # Despite the name, also works for non-floating windows.

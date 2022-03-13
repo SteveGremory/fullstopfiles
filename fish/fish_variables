@@ -1,6 +1,6 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
-SETUVAR LIBVA_DRIVER_NAME:iHD
+SETUVAR --export LIBVA_DRIVER_NAME:iHD
 SETUVAR VK_ICD_FILENAMES:/usr/share/vulkan/icd\x2ed/intel_icd\x2ex86_64\x2ejson
 SETUVAR __fish_initialized:3100
 SETUVAR fish_color_autosuggestion:555\x1ebrblack
@@ -30,3 +30,4 @@ SETUVAR fish_pager_color_completion:\x1d
 SETUVAR fish_pager_color_description:B3A06D\x1eyellow
 SETUVAR fish_pager_color_prefix:normal\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
+SETUVAR fish_user_paths:/home/steven/\x2ecargo/bin\x1e/home/steven/bin\x1e/home/steven/\x2elocal/bin\x1e/home/steven/fasm\x1e/home/steven/\x2enimble/bin\x1e/home/steven/Documents/Github/osxcross/target/bin\x1e/home/steven/Documents/Github/osxcross
