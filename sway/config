@@ -1,7 +1,6 @@
 # Autostart
 exec udiskie
 exec gammastep
-exec noisetorch
 
 # Style
 font pango:JetBrains Mono 14px 
@@ -10,35 +9,40 @@ titlebar_border_thickness 2
 gaps outer 5
 gaps inner 5
 
+for_window [class=".*"] split toggle
+for_window [app_id=".*"] split toggle
+
+set $background #0C0D17
+set $foreground #d0db99
+
+set $color0 #0C0D17
+set $color1 #770d7b
+set $color2 #0e4f82
+set $color3 #271090
+set $color4 #1240a2
+set $color5 #145cbb
+set $color6 #e5dd1a
+set $color7 #d0db99
+set $color8 #91996b
+set $color9 #770d7b
+set $color10 #0e4f82
+set $color11 #271090
+set $color12 #1240a2
+set $color13 #145cbb
+set $color14 #e5dd1a
+set $color15 #d0db99
+
 ## Window decoration
-# class                 border  backgr. text    indicator child_border
-client.focused          #1b1b1b #262626 #f0f0f0 #9ec3c4   #0b0b0b
-client.focused_inactive #0b0b0b #262626 #f0f0f0 #9ec3c4   #0b0b0b
-client.unfocused        #0b0b0b #0f0f0f #f0f0f0 #9ec3c4   #4c4c4c
-client.urgent           #0b0b0b #325886 #0f0f0f #9ec3c4   #0b0b0b
+# class                 border  backgr.      text    indicator child_border
+client.focused          $color0  $background $color3 $color4   $color2
+client.focused_inactive $color1  $background $color3 $color4   $color2
+client.unfocused        $color2  $foreground $color3 $color4   $color2
+client.urgent           $color3  $foreground $color2 $color4   $color2
 
 # Import GTK settings
 exec_always /home/stevegremory/bin/import-gsettings \
     gtk-theme:Adwaita-dark \
     icon-theme:Adwaita 
-
-# Window rules
-for_window [workspace="2"] layout tabbed
-for_window [workspace="4"] layout tabbed
-for_window [workspace="5"] layout tabbed
-for_window [app_id="ncmpcpp"] floating enable, resize set height 500 px, resize set width 1000 px, move position 5 10
-for_window [app_id="cava"] floating enable, resize set height 500 px, resize set width 1000px, move position 895 520
-for_window [app_id="veracrypt"] floating enable
-
-# Assignments
-assign [app_id="amfora"] 2
-assign [app_id="neomutt"] 4
-assign [app_id="weechat"] 4
-assign [app_id="telegramdesktop"] 4
-assign [class="Signal Beta"] 4
-assign [app_id="org.pwmt.zathura"] 5
-assign [class="Gimp-2.10"] 6
-assign [app_id="audacity"] 6
 
 # Keybindings
 
@@ -71,7 +75,7 @@ set $menu wofi --show drun
 
 ## Output configuration
 # Default wallpaper 
-output * bg ~/Pictures/Wallpapers/new_mexico.jpg fill
+output * bg ~/Pictures/Wallpapers/cyberpunk2077_002.jpg fill
 
 # Behavior
 focus_follows_mouse yes
@@ -111,9 +115,9 @@ bindsym $mod+p exec $menu
 bindsym Control+space exec makoctl dismiss
 
 # Screenshot with grim and swappy
-bindsym print exec /home/steven/bin/screenshot.sh
-bindsym Shift+print exec /home/steven/bin/screenshot -f
-    # Drag floating windows by holding down $mod and left mouse button.
+bindsym print exec /home/steve/.config/sway/bin/screenshot.sh
+bindsym Shift+print exec /home/steve/.config/sway/bin/screenshot -f
+# Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
     # Despite the name, also works for non-floating windows.
     # Change normal to inverse to use left mouse button for resizing and right
