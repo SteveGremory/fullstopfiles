@@ -19,12 +19,13 @@ class Colors:
 
 USERNAME = "steve"
 
-def copy_config(executable_name):
+def git_clone():
     # Clone the repo to /tmp
     if os.path.isdir("/tmp/dotfiles"):
         shutil.rmtree("/tmp/dotfiles")
     Repo.clone_from("https://github.com/SteveGremory/fullstopfiles", '/tmp/dotfiles')
-    
+
+def copy_config(executable_name):
     print(Colors.HEADER + "Copying the config for "
             + executable_name + " to ~/.config/"
             + executable_name + Colors.ENDC)
@@ -56,7 +57,7 @@ def check_for_configs(executables):
             if replace_config_answer.lower() == "y":
                 print(Colors.OKBLUE + "Overwriting the configuration for "
                         + executables[i] + Colors.ENDC)
-                # os.rmdir("~/.config/" + executables[i])
+                shutil.rmtree("/home/" + USERNAME + "/.config/" + executables[i])
                 copy_config(executables[i])
             else:
                 print(Colors.OKGREEN + "Conserving the config for " 
@@ -71,8 +72,10 @@ def check_for_configs(executables):
 def main():
 
     # The executables to check the presence of.
-    executables = ["mako", "sway", "wofi", "foot", "waybar"]
+    executables = ["nvim", "mako", "sway", "wofi", "foot", "waybar"]
     
+    # Clone the repo
+    git_clone()
     # Check if all the needed executables are present. 
     print(Colors.WARNING + "Checking if all executables exist..." + Colors.ENDC)
     check_for_executables(executables)
