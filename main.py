@@ -2,9 +2,7 @@ import os
 from git.repo.base import Repo
 import shutil
 
-# Goals:
-# Check if the executables needed are present
-# check if some config files are already present, if yes, prompt to save those or get the ones from my github
+USERNAME = "steve"
 
 class Colors:
     HEADER = '\033[95m'
@@ -17,8 +15,6 @@ class Colors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
-USERNAME = "steve"
-
 def git_clone():
     # Clone the repo to /tmp
     if os.path.isdir("/tmp/dotfiles"):
@@ -26,63 +22,57 @@ def git_clone():
     Repo.clone_from("https://github.com/SteveGremory/fullstopfiles", '/tmp/dotfiles')
 
 def copy_config(executable_name):
-    print(Colors.HEADER + "Copying the config for "
-            + executable_name + " to ~/.config/"
-            + executable_name + Colors.ENDC)
+    print(f"""{Colors.HEADER}Copying the config for {executable_name} to ~/.config/{executable_name}.{Colors.ENDC}""")
     try:
-        shutil.copytree("/tmp/dotfiles/" + executable_name, "/home/" + USERNAME + "/.config/" + executable_name)
+        shutil.copytree(f"/tmp/dotfiles/{executable_name}",
+                f"/home/{USERNAME}/.config/{executable_name}")
     except:
-        print(Colors.FAIL + "Failed to copy config file for " + executable_name + "." + Colors.ENDC)
+        print(f"""{Colors.FAIL}Failed to copy config file for {executable_name}.{Colors.ENDC}""")
 
 def check_for_executables(executables):
     for i in range(len(executables)):
         try:
             os.path.isfile(executables[i])
         except:
-            print(Colors.FAIL + executables[i] 
-                    + " wasn't found." + Colors.ENDC)
-
-    print(Colors.HEADER + "All executables are present." + Colors.ENDC)
+            print(f"""{Colors.FAIL} {executables[i]} wasn't found.{Colors.ENDC}""")
+            exit(0)
+    print(f"{Colors.HEADER}All executables are present.{Colors.ENDC}")
 
 def check_for_configs(executables):
     for i in range(len(executables)):
-        if os.path.isdir("/home/" + USERNAME + "/.config/" + executables[i]):
-            print(Colors.HEADER + "A config directory for "
-                    + executables[i] + " already exists."
-                    + Colors.ENDC)
+        if os.path.isdir(f"/home/{USERNAME}/.config/{executables[i]}"):
+            print(f"""{Colors.HEADER}A config directory for {executables[i]} already exists.{Colors.ENDC}""")
             
-            replace_config_answer = input(Colors.WARNING + "Do you want to override the configuration for "
-                                            + executables[i]
-                                            + " with the github one? [Y/N] " + Colors.ENDC)
+            replace_config_answer = input(f"""{Colors.WARNING}Do you want to override the configuration for {executables[i]} with the github one? [Y/N]? {Colors.ENDC}""")
             if replace_config_answer.lower() == "y":
-                print(Colors.OKBLUE + "Overwriting the configuration for "
-                        + executables[i] + Colors.ENDC)
-                shutil.rmtree("/home/" + USERNAME + "/.config/" + executables[i])
+                print(f"""{Colors.OKBLUE}Overwriting the configuration for {executables[i]}.{Colors.ENDC}""")
+                shutil.rmtree(f"/home/{USERNAME}/.config/{executables[i]}")
                 copy_config(executables[i])
             else:
-                print(Colors.OKGREEN + "Conserving the config for " 
-                        + executables[i] + Colors.ENDC)
+                print(f"""{Colors.OKGREEN}Conserving the config for {executables[i]} {Colors.ENDC}""")
         else:
-            print(Colors.OKBLUE + "Overwriting the configuration for "
-                    + executables[i] + Colors.ENDC)
+            print(f"""{Colors.OKBLUE}Overwriting the configuration for {executables[i]} Colors.ENDC""")
             copy_config(executables[i])
 
-    print(Colors.OKGREEN + "\nAll configs were setup successfully." + Colors.ENDC)
+    print(f"{Colors.OKGREEN}\nAll configs were setup successfully.{Colors.ENDC}")
 
 def main():
-
+    if not os.path.isdir(f"/home/{USERNAME}"):
+        print(f"""/home/{USERNAME} does not exist. Please change your username in the script.""")
     # The executables to check the presence of.
     executables = ["nvim", "mako", "sway", "wofi", "foot", "waybar"]
     
     # Clone the repo
     git_clone()
+    
     # Check if all the needed executables are present. 
-    print(Colors.WARNING + "Checking if all executables exist..." + Colors.ENDC)
+    print(f"{Colors.WARNING}Checking if all executables exist...{Colors.ENDC}")
     check_for_executables(executables)
-    # Check for already existing config files.
-    print(Colors.WARNING + "Checking config files..." + Colors.ENDC)
+   
+   # Check for already existing config files.
+    print(f"{Colors.WARNING}Checking config files...{Colors.ENDC}")
     check_for_configs(executables)
 
-main()
-
+if __name__ == "__main__":
+    main()
 
